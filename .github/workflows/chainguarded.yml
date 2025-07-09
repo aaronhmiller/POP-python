@@ -33,13 +33,13 @@ jobs:
         }
         
         # Run Grype scan in background with progress indicator
-        grype cgr.dev/chainguard/python --output json > grype-results.json &
+        grype cgr.dev/chainguard/python --show-suppressed --output json > grype-results.json &
         GRYPE_PID=$!
         show_progress $GRYPE_PID
         wait $GRYPE_PID
         
         # Generate table output
-        grype cgr.dev/chainguard/python --output table > grype-table.txt
+        grype cgr.dev/chainguard/python --show-suppressed --output table > grype-table.txt
         
         # Display table output for visibility
         echo "📋 Grype scan results:"
